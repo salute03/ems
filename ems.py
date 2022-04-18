@@ -26,6 +26,30 @@ def read_employees():
         case _ : print("Not a valid input.")
 
 
+def add_employee():
+    first_name = input("Enter employee first name ")
+    last_name = input("Enter emplyee last name: ")
+    
+    while True:
+        try: 
+            salary = int(input("Enter emplyee salary: "))
+        except ValueError:
+            print("Salary must be an integer")
+        else: break
+    
+    while True:
+        try: 
+            doe_string = input("Enter emplyee date of employment (day/month/year): ")
+            doe = datetime.strptime(doe_string, "%d/%m/%Y")
+        except ValueError:
+            print("Date must be in the format day/month/full year")
+        else: break
+    department = input("Enter emplyee department: ")
+
+    employee = Employee(first_name, last_name, salary, doe, department)
+    employees.append(employee)
+
+
 if __name__ == "__main__":
     while True:
         print("""Welcome to the Employee Management System!  Please enter an option:
