@@ -27,28 +27,68 @@ def read_employees():
 
 
 def add_employee():
-    first_name = input("Enter employee first name ")
-    last_name = input("Enter emplyee last name: ")
+    first_name = input("Enter employee first name: ")
+    last_name = input("Enter employee last name: ")
     
     while True:
         try: 
-            salary = int(input("Enter emplyee salary: "))
+            salary = int(input("Enter employee salary: "))
         except ValueError:
             print("Salary must be an integer")
         else: break
     
     while True:
         try: 
-            doe_string = input("Enter emplyee date of employment (day/month/year): ")
+            doe_string = input("Enter employee date of employment (day/month/year): ")
             doe = datetime.strptime(doe_string, "%d/%m/%Y")
         except ValueError:
             print("Date must be in the format day/month/full year")
         else: break
-    department = input("Enter emplyee department: ")
+    department = input("Enter employee department: ")
 
     employee = Employee(first_name, last_name, salary, doe, department)
     employees.append(employee)
 
+
+def update_employee():
+    emp_id = input("Enter employee id: ")
+    for e in employees:
+        if e.emp_id == emp_id:
+            employee = e
+            break
+        else: 
+            print("Employee not found")
+            return
+    
+    first_name = input("Enter employee first name: ")
+    last_name = input("Enter employee last name: ")
+    
+    while True:
+        try: 
+            salary = int(input("Enter employee salary: "))
+        except ValueError:
+            print("Salary must be an integer")
+        else: break
+    
+    while True:
+        try: 
+            doe_string = input("Enter employee date of employment (day/month/year): ")
+            doe = datetime.strptime(doe_string, "%d/%m/%Y")
+        except ValueError:
+            print("Date must be in the format day/month/full year")
+        else: break
+    department = input("Enter employee department: ")
+
+    employee.first_name = first_name
+    employee.last_name = last_name
+    employee.salary = salary
+    employee.doe = doe
+    employee.department = department
+
+
+def delete_employee():
+    emp_id = input("Enter employee id: ")
+    employees = [employee for employee in employees if employee.emp_id != emp_id]
 
 if __name__ == "__main__":
     while True:
@@ -62,5 +102,8 @@ if __name__ == "__main__":
 
         match option:
             case "1": read_employees()
-            case "2": break
+            case "2": add_employee()
+            case "3": update_employee()
+            case "4": delete_employee()
+            case "5": break
             case _ : print("Not a valid input.")

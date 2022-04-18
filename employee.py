@@ -13,7 +13,7 @@ class Employee:
     def __str__(self):
         return f"""-----
         Employee ID: {self.emp_id}
-        Name: {self.first_name} {self.last_name}, 
+        Name: {self.first_name} {self.last_name}
         Salary: {self.salary}
         Date of Employment: {self.doe.date()}
         Department: {self.department}
